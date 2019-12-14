@@ -1,0 +1,10 @@
+.DashboardBox { 
+    background-color: rgb(218, 206, 206);
+    border: 1px solid #c4b6b6;
+    border-radius: 5px;
+    box-shadow: 2px 4px 10px #777777;
+    height: 450px;
+    margin: 10px 0;
+    overflow: hidden;
+    padding: 0 20px ;
+}

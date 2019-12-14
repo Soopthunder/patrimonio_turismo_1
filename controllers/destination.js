@@ -1,0 +1,4 @@
+
+exports.createDestination = (req, res) => {
+    
+}

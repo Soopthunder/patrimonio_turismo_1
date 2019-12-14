@@ -1,0 +1,27 @@
+.AddDestinationButton {
+    align-items: center;
+    color: rgba(82, 71, 71, 1);
+    display: flex;
+    font-size: 22px;
+    justify-content: flex-end;
+    margin: 30px 0;
+}
+
+.AddDestinationButton button {
+    align-items: center;
+    background: #c4b6b6;
+    border: 2px solid rgba(82, 71, 71, 1);
+    border-radius: 100%;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    margin-left: 10px;
+    width: 80px;
+    transition: all 0.4s linear;
+}
+
+.AddDestinationButton button:hover {
+    background-color: rgba(82, 71, 71, 1);
+    border: 1px solid #c4b6b6;
+    color: #c4b6b6;
+}

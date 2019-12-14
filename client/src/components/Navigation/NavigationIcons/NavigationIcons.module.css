@@ -1,0 +1,34 @@
+.NavigationIcons {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: flex-end;
+}
+
+.UserMenu {
+    list-style: none; 
+    padding: 0; 
+}
+
+.UserMenu li {
+    padding: 5px 0;
+    text-align: center;
+    transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+}
+
+.UserMenu li a {
+    color: rgb(119, 166, 182)lue;
+    text-decoration: none;
+}
+
+.UserMenu li:hover{
+    background-color: rgb(119, 166, 182);
+}
+
+.UserMenu li:hover a{
+    color: rgb(218, 206, 206);
+}
+

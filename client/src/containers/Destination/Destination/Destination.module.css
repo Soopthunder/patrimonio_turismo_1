@@ -1,0 +1,65 @@
+.Destination {
+    background-color: rgb(218, 206, 206);
+    border: 1px solid #c4b6b6;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 400px;
+    padding: 10px;
+    margin: 10px 5px;
+    width: 100%;
+}
+
+.Destination:hover {
+    box-shadow: 5px -5px 15px #777777;
+}
+
+.Destination figure {
+    margin: 0;
+    padding: 10px;
+    height: 50%;
+    overflow: hidden;
+}
+
+.Destination img {
+    width: 100%;
+}
+
+.Destination h3 {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.Destination div {
+    padding: 10px;
+}
+
+.DestinationControls {
+    color: #c4b6b6;
+}
+
+.DestinationControls button {
+    background: transparent;
+    border: 1px solid #c4b6b6;;
+    color: #c4b6b6;;
+    margin: 0 5px;
+    padding: 5px;
+}
+
+.DestinationControls button:hover {
+    color: rgba(82, 71, 71, 1);
+    background: #c4b6b6;
+    border: 4px rgb(56, 13, 13);
+}
+
+@media (min-width: 600px) {
+    .Destination {
+        width:48%;
+    }
+}
+
+@media (min-width: 991px) {
+    .Destination {
+        width:32%;
+    }
+}

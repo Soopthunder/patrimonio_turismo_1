@@ -1,0 +1,10 @@
+.MessageSummary{ 
+    overflow-y: hidden;
+    height: 360px; 
+    padding: 0 30px;
+}
+
+.MessageSummary:hover{ 
+    overflow-y: scroll;
+    width: 103%;
+}
