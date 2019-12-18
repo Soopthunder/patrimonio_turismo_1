@@ -19,10 +19,12 @@ import Button from '../Button/Button';
 const Form = props => {
 
     const handleChange = (event, id) => {
+        const value = event.target.files ? event.target.files[0] : event.target.value;
         const updateData = {
-            value: event.target.value,
+            value,
+            files: event.target.files,
             touched: true,
-            valid: checkValidity(event.target.value, props.data.elements[id].validation)
+            valid: event.target.files ? true : checkValidity(value, props.data.elements[id].validation)
         };
         const updatedElement = updateObject(props.data.elements[id], updateData);
         const updatedData = updateObject(props.data.elements, { [id]: updatedElement });
@@ -37,9 +39,18 @@ const Form = props => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const formData = {};
-        for (let formElementIdentifier in props.data.elements) {
-            formData[formElementIdentifier] = props.data.elements[formElementIdentifier].value;
+
+        let formData = null;
+        if (props.formData) {
+            formData = new FormData();
+            for (let formElementIdentifier in props.data.elements) {
+                formData.append(formElementIdentifier, props.data.elements[formElementIdentifier].value);
+            }
+        } else {
+            formData = {};
+            for (let formElementIdentifier in props.data.elements) {
+                formData[formElementIdentifier] = props.data.elements[formElementIdentifier].value;
+            }
         }
         props.submitAction(formData);
     }
@@ -56,6 +67,7 @@ const Form = props => {
         {formElementsArray.map(formElement => (
             <Input
                 key={formElement.id}
+                label={formElement.config.label}
                 elementType={formElement.config.elementType}
                 elementConfig={formElement.config.elementConfig}
                 value={formElement.config.value}
@@ -77,11 +89,7 @@ const Form = props => {
         </div>
     </form>
 
-    return (
-        <form onSubmit={props.handleSubmit}>
-            {form}
-        </form>
-    );
+    return form;
 };
 
 export default Form;

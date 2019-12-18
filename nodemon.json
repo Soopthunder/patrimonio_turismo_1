@@ -1,0 +1,12 @@
+{
+    "env": {
+        "PORT": 5000,
+        "MONGO_URI": "mongodb+srv://julian:YAEFeqVlx0Dtxw7N@patrimonio-development-oon5p.mongodb.net/test?retryWrites=true",
+        "COOKIE_KEY": "dasdasda1dsa32d1sa32das13dsa2dsa64ads55dsa64ad46sad54",
+        "INITIAL_USER_PASS": "test",
+        "INITIAL_USER_NAME": "test",
+        "INITIAL_USER_EMAIL": "julian.y.estefan@gmail.com",
+        "SENGRID_APIKEY": "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",
+        "CORS_ALLOW_ORIGIN": "*"
+    } 
+}

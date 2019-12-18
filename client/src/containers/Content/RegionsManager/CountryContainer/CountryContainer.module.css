@@ -1,0 +1,21 @@
+.CountryContainer {
+    display: inline-block;
+    box-shadow: 2px 2px 5px #777777;
+    font-size: 18px;
+    padding: 5px 10px;
+    margin: 5px 10px;
+}
+
+.CountryContainer button {
+    background: transparent;
+    border: none;
+}
+
+.CountryContainer button i {
+    color: #777777;
+    font-weight: 900;
+}
+
+.CountryContainer button:hover i {
+    color: red;
+}

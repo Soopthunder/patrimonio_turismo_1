@@ -1,33 +1,44 @@
 import React, { Suspense, useState, useEffect } from 'react';
 
-import axios from 'axios';
+import { connect } from 'react-redux'
 
 import Layout from './containers/Layput/Layout';
 import Routes from './components/Routes/Routes';
 import Spinner from './components/UI/Spinner/Spinner';
 import styles from './App.module.css'
+import { fecthMessages, fetchAuth } from './redux/actions'
 
-const App = () => {
-  const [isAuth, setAuth] = useState(false);
+const App = ({ onFetchMessages, onFetchAuth }) => {
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
-    axios.get('/api/current_user')
+    setLoading(true);
+
+    onFetchAuth()
       .then(res => {
-        res.data ? setAuth(true) : setAuth(false);
-        setLoading(false);
+        onFetchMessages()
+          .then(res => {
+            setLoading(false);
+          });
       })
-  })
+
+  }, [onFetchAuth, onFetchMessages])
 
   return (
     <div className={styles.app}>
-      <Layout isAuth={isAuth} >
+      <Layout >
         <Suspense fallback={<Spinner />}>
-          { loading ? <Spinner/> : <Routes isAuth={isAuth} setAuth={setAuth} />}
+          {loading ? <Spinner /> : <Routes />}
         </Suspense>
       </Layout>
     </div>
   );
 }
 
-export default App;
+const mapDispatchToProps = dipsatch => ({
+  onFetchMessages: () => dipsatch(fecthMessages()),
+  onFetchAuth: () => dipsatch(fetchAuth())
+})
+
+export default connect(null, mapDispatchToProps)(App);

@@ -1,0 +1,36 @@
+.DropdownHeader {
+    background: #05056d;
+    box-shadow: 2px -2px 10px #777777;
+    padding:  15px 20px;
+    cursor: pointer;
+}
+
+.DropdownHeader h3 {
+    color: #c4b6b6;
+    font-size: 24px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.DropdownHeader i {
+    color: #c4b6b6;
+    font-size: 26px;
+}
+
+.DropdownContent { 
+    background: rgb(218, 206, 206);
+    height: auto;
+    max-height: 0px;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.8s ease-in ;
+    -webkit-transition: all 0.8s ease-in;
+    -moz-transition: all 0.8s ease-in ;
+}
+
+.DropdownContent.Show { 
+    border-radius: 0 0 5px 5px ;
+    box-shadow: 2px 4px 10px #777777;
+    max-height: 1000px;
+    padding: 30px 30px 20px 30px;
+    opacity: 1;
+}

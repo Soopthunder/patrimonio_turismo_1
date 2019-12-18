@@ -1,0 +1,44 @@
+.Message {
+    background: rgb(218, 206, 206);
+    border-radius: 10px;
+    border: 1px solid #777777;
+    color: green;
+}
+
+.Message button {
+    background: transparent;
+    border: none;
+}
+
+.Message a {
+    color: green;
+    text-decoration: none;
+}
+
+.Message i {
+    color: green;
+}
+
+.Message a:hover {
+    color: rgb(37, 173, 37);
+}
+
+.Message.NotReaded {
+    background: rgb(194, 188, 188);
+    border-radius: 10px;
+    border: 1px solid #777777;
+    color: red;
+}
+
+.Message.NotReaded i {
+    color: red;
+}
+
+.Message.NotReaded a {
+    color: red;
+    text-decoration: none;
+}
+
+.Message.NotReaded a:hover {
+    color: rgb(211, 86, 86);
+}

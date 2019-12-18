@@ -1,25 +1,31 @@
 import React from 'react';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import Routes from '../../config/routes';
-import Login from '../../containers/Login/Login';
 
-const routesList = props => {
+const routesList = ({isAuth}) => {
     const routes = [];
-    if (props.isAuth) {
-        for (let route in Routes.privateRoutes) routes.push(<Route {...Routes.privateRoutes[route]} />)
+    if (isAuth) {
+        for (let route in Routes.privateRoutes) 
+            routes.push(<Route key={Routes.privateRoutes[route]} {...Routes.privateRoutes[route]} />)
     } else {
-        routes.push(<Route path='/login' render={routerProps => <Login {...routerProps} setAuth={props.setAuth} />} />)
+        for (let route in Routes.publicRoutes) 
+            routes.push(<Route key={Routes.privateRoutes[route]} {...Routes.publicRoutes[route]} />)
     }
 
     return (
         <Switch>
             {routes}
-            {props.isAuth ? <Redirect to="/" /> : <Redirect to='/login' />}
+            {isAuth ? <Redirect to="/" /> : <Redirect to='/login' />}
         </Switch>
     );
 }
 
-export default routesList;
+const mapStateToProps = state => ({
+    isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps)(routesList);
 

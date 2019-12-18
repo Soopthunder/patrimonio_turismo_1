@@ -19,8 +19,11 @@
     -moz-transition: all 0.3s linear;
 }
 
-.UserMenu li a {
-    color: rgb(119, 166, 182)lue;
+
+.UserMenu li a, .UserMenu li button {
+    background: transparent;
+    border: none;
+    color: rgb(119, 166, 182);
     text-decoration: none;
 }
 
@@ -28,7 +31,16 @@
     background-color: rgb(119, 166, 182);
 }
 
-.UserMenu li:hover a{
+.UserMenu li:hover a , .UserMenu li:hover button {
     color: rgb(218, 206, 206);
 }
 
+.MessagesLink  {
+    color: rgb(62, 62, 122) ;
+    text-decoration: none;
+}
+
+.MessagesLink:hover {
+    color: rgb(104, 104, 170) ;
+    text-decoration: none;
+}

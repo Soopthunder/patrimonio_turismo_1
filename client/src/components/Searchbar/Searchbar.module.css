@@ -1,0 +1,29 @@
+.searchbar {
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+
+.searchbar input {
+    padding: 0 20px;
+    border: 1px solid rgb(193, 193, 224);
+    border-radius: 5px;
+    color: rgb(109, 109, 141);
+    margin-right: -35px;
+    transition: all 0.5s linear;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+}
+
+.searchbar input::placeholder {
+    color: rgb(193, 193, 224);
+}
+
+.searchbar input:focus {
+    border-bottom: 1px solid rgb(103, 103, 129);
+}
+
+.searchbar i {
+    color: rgb(193, 193, 224);
+}
+

@@ -4,6 +4,7 @@ import Content from '../containers/Content/Content';
 import Messages from '../containers/Messages/Messages';
 import Login from '../containers/Login/Login';
 import Settings from '../containers/Settings/Settings';
+import CreateDestination from '../containers/Destination/CreateDestination';
 
 const routes = {
     privateRoutes:{
@@ -11,6 +12,10 @@ const routes = {
             path: '/',
             exact: true,
             component: Dashboard
+        },
+        createDestination: {
+            path: '/destinos/crear-destino',
+            component: CreateDestination
         },
         destinations: {
             path: '/destinos',
@@ -23,7 +28,7 @@ const routes = {
             component: Content
         },
         messages: {
-            path: '/mensajes',
+            path: '/mensajes/:id',
             exact: false,
             component: Messages
         },
@@ -33,7 +38,7 @@ const routes = {
             component: Settings
         }
     },
-    onlyPublicRoutes: {
+    publicRoutes: {
         login: {
             path: '/login',
             exact: false,

@@ -11,13 +11,17 @@ const NavigationIcon = props => {
     return (
         <li className={styles.Icon}>
             <div
-                className= {styles.IconContainer}
+                className={styles.IconContainer}
                 onMouseOver={() => setVisible(true)}
                 onMouseLeave={() => setVisible(false)}>
                 <div>
                     <i className={props.icon} />
                 </div>
             </div>
+            {props.quantity ?
+                <div className={styles.QuantityContainer}>
+                    {props.quantity}
+                </div> : null}
             <div
                 className={styles.Dropdown}
                 style={s}

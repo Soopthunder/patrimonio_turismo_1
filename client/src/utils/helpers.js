@@ -3,7 +3,7 @@ export const checkValidity = (value, rules) => {
     if (!rules) {
         return true;
     }
-    
+
     if (rules.required) {
         isValid = value.trim() !== '' && isValid;
     }
@@ -29,9 +29,25 @@ export const checkValidity = (value, rules) => {
     return isValid;
 }
 
-export const updateObject = (oldObject, updatedProperties) =>{
+export const updateObject = (oldObject, updatedProperties) => {
     return {
         ...oldObject,
         ...updatedProperties
     };
 }
+
+export const parseFormEvent = event => {
+    switch (event.target.type) {
+        case 'checkbox': return event.target.checked;
+        case 'file': return event.target.files[0];
+        default: return event.target.value;
+    }
+}
+
+export const initContinents = (regionsData, toUpdateObject = {}) => {
+    return updateObject(toUpdateObject, {
+        continent: regionsData[0].name,
+        region: regionsData[0].regions ? regionsData[0].regions[0].name : '',
+        country: regionsData[0].countries ? regionsData[0].countries[0] : regionsData[0].regions[0].countries[0]
+    })
+};

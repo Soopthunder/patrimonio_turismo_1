@@ -2,36 +2,36 @@ import React from 'react';
 
 import styles from './Input.module.css';
 
-const input = ( props ) => {
+const input = ( { touched, invalid, shouldValidate, elementConfig, changed, value, label, elementType } ) => {
     let inputElement = null;
     const inputClasses = [styles.InputElement];
 
-    if (props.invalid && props.shouldValidate && props.touched) {
+    if (invalid && shouldValidate && touched) {
         inputClasses.push(styles.Invalid);
     }
 
-    switch ( props.elementType ) {
+    switch ( elementType ) {
         case ( 'input' ):
             inputElement = <input
                 className={inputClasses.join(' ')}
-                {...props.elementConfig}
-                value={props.value}
-                onChange={props.changed} />;
+                {...elementConfig}
+                value={ elementConfig.type !== 'file' ? value : null }
+                onChange={changed} />;
             break;
         case ( 'textarea' ):
             inputElement = <textarea
                 className={inputClasses.join(' ')}
-                {...props.elementConfig}
-                value={props.value}
-                onChange={props.changed} />;
+                {...elementConfig}
+                value={value}
+                onChange={changed} />;
             break;
         case ( 'select' ):
             inputElement = (
                 <select
                     className={inputClasses.join(' ')}
-                    value={props.value}
-                    onChange={props.changed}>
-                    {props.elementConfig.options.map(option => (
+                    value={value }
+                    onChange={changed}>
+                    {elementConfig.options.map(option => (
                         <option key={option.value} value={option.value}>
                             {option.displayValue}
                         </option>
@@ -42,14 +42,14 @@ const input = ( props ) => {
         default:
             inputElement = <input
                 className={inputClasses.join(' ')}
-                {...props.elementConfig}
-                value={props.value}
-                onChange={props.changed} />;
+                {...elementConfig}
+                value={value}
+                onChange={changed} />;
     }
 
     return (
         <div className={styles.Input}>
-            <label className={styles.Label}>{props.label}</label>
+            <label htmlFor={elementConfig.id} className={styles.Label}>{label}</label>
             {inputElement}
         </div>
     );

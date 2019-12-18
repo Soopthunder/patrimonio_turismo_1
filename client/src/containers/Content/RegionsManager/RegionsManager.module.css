@@ -1,0 +1,14 @@
+.RegionsManager select {
+    background: rgb(218, 206, 206);
+    color: #777777; 
+    font-size: 18px;
+    padding: 10px;
+}
+
+.CountriesContainer{
+    box-shadow: 4px 4px 15px #777777;
+    margin: 15px 0;
+    padding: 10px;
+    min-height: 150px;
+}
+

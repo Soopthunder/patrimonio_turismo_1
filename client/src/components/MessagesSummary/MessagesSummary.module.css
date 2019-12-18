@@ -1,7 +1,7 @@
 .MessageSummary{ 
-    overflow-y: hidden;
-    height: 360px; 
-    padding: 0 30px;
+    overflow: hidden;
+    height: 100%; 
+    padding:  10px;
 }
 
 .MessageSummary:hover{ 

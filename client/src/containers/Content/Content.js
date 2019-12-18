@@ -1,68 +1,77 @@
 import React, { useState } from 'react';
 
-import ContentManager from '../../components/ContentManager/ContentManager';
-import WithDropdown from '../../hoc/withDropdown';
+import WithDropdown from '../../components/UI/WithDropdown/withDropdown';
+import RegionsManager from './RegionsManager/RegionsManager';
+import Toast from '../../components/UI/Toast/toast';
+import ContentManager from './ContentManager/ContentManager';
+import GalleryManager from './GalleryManager/GalleryManager';
+import CaatalogManager from './CatalogsManager/CatalogManager';
+import { addService, addBanner, addOperator } from '../../config/form';
+import CatalogManager from './CatalogsManager/CatalogManager';
 
 const Content = props => {
-    const [services, setServices] = useState([
-        {
-            id: 2,
-            title: 'Renta un auto',
-            image: 'http://dev.patrimonioturismo.com/img/o1.jpg',
-            description: 'A la hora de hacer un viaje turístico por un determinado país donde vas a planificar una ruta para conocer distintos lugares, alquilar un coche es la solución ideal.'
-        },
-        {
-            id: 1,
-            title: 'Reserva para crucero',
-            image: 'http://dev.patrimonioturismo.com/img/o2.jpg',
-            description: 'Tenemos disponible una gran variedad de destinos nacionales e internacionales para satisfacer a todos nuestros clientes.'
-        }
-    ]);
-    const [popularDestinations, setPopularDestinations] = useState([
-        {
-            id: 1,
-            title: 'Peru',
-            image: 'http://dev.patrimonioturismo.com/img/destinos_inicio/peru.jpg',
-            description: 'Patrimonios culturales'
-        },
-        {
-            id: 2,
-            title: 'Peru',
-            image: 'http://dev.patrimonioturismo.com/img/destinos_inicio/peru.jpg',
-            description: 'Patrimonios culturales'
-        }
-    ]);
-    const [BannerImages, setBannerImages] = useState([
-        {
-            id: 1,
-            title: 'Peru',
-            image: 'http://dev.patrimonioturismo.com/img/destinos_inicio/peru.jpg',
-            description: 'Patrimonios culturales'
-        },
-        {
-            id: 2,
-            title: 'Peru',
-            image: 'http://dev.patrimonioturismo.com/img/destinos_inicio/peru.jpg',
-            description: 'Patrimonios culturales'
-        }
-    ]);
-
+    const [toastMessage, setToastMessage] = useState('');
 
     return (
         <section className="row">
             <h2 className="w-100"> Contenido </h2>
-            <div className="col-12 col-md-10 col-lg-8 mx-auto">
-                <WithDropdown title="Destinos Populares" show={true} >
-                    <ContentManager buttonText="destino" data={popularDestinations} />
-                </WithDropdown>
+            <div className="col-12 col-md-6 mx-auto">
                 <WithDropdown title="Banner principal" >
-                    <ContentManager buttonText="banner" data={BannerImages} />
-                </WithDropdown>
-                <WithDropdown title="Servicios">
-                    <ContentManager buttonText="servicio" data={services} />
+                    <ContentManager
+                        getFormData={addBanner}
+                        deleteDataUrl="/api/borrar-banner/"
+                        editDataUrl="/api/editar-banner/"
+                        addDataUrl="/api/agregar-banner"
+                        fetchDataUrl="/api/banners"
+                        messageElement="banner"
+                        setToastMessage={setToastMessage} />
                 </WithDropdown>
             </div>
-        </section>
+            <div className="col-12 col-md-6 mx-auto">
+                <WithDropdown title="Servicios">
+                    <ContentManager
+                        getFormData={addService}
+                        deleteDataUrl="/api/borrar-servicio/"
+                        editDataUrl="/api/editar-servicio/"
+                        addDataUrl="/api/agregar-servicio"
+                        fetchDataUrl="/api/servicios"
+                        messageElement="servicio"
+                        setToastMessage={setToastMessage} />
+                </WithDropdown>
+            </div>
+            <div className="col-12 col-md-6 mx-auto">
+                <WithDropdown title="Galería">
+                    <GalleryManager />
+                </WithDropdown>
+            </div>
+            <div className="col-12 col-md-6 mx-auto">
+                <WithDropdown title="Regiones">
+                    <RegionsManager setToastMessage={setToastMessage} />
+                </WithDropdown>
+            </div>
+            <div className="col-12 col-md-6 mx-auto">
+                <WithDropdown title="Operadores">
+                    <ContentManager
+                        getFormData={addOperator}
+                        deleteDataUrl="/api/borrar-operador/"
+                        editDataUrl="/api/editar-operador/"
+                        addDataUrl="/api/agregar-operador"
+                        fetchDataUrl="/api/operadores"
+                        messageElement="operador"
+                        setToastMessage={setToastMessage} />
+                </WithDropdown>
+
+            </div>
+            <div className="col-12 col-md-6 mx-auto">
+                <WithDropdown title="Catalogos">
+                    <CatalogManager
+                        messageElement="catálogo"
+                        setToastMessage={setToastMessage}
+                    />
+                </WithDropdown>
+            </div>
+            <Toast message={toastMessage} setMessage={setToastMessage} />
+        </section >
     )
 }
 

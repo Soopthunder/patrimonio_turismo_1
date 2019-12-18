@@ -1,27 +1,36 @@
-import React, { useState } from 'react'
-import styles from './Layout.module.css'
+import React, { useState } from 'react';
+
+import { connect } from 'react-redux';
+
+import styles from './Layout.module.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 
-const Layout = props => {
-    const [ showSideDrawer, setSideDrawer ] = useState(false);
+const Layout = ({ isAuth, children }) => {
+    const [showSideDrawer, setSideDrawer] = useState(false);
 
     return (
         <>
-            <Toolbar
-                drawerToggleClicked={() => setSideDrawer(!showSideDrawer)}
-                isAuth={props.isAuth}
-            />
-            <SideDrawer
-                open={ showSideDrawer}
-                closed={() => setSideDrawer(false)}
-                isAuth={props.isAuth}
-            />
+            {isAuth && <>
+                <Toolbar
+                    drawerToggleClicked={() => setSideDrawer(!showSideDrawer)}
+                    isAuth={isAuth}
+                />
+                <SideDrawer
+                    open={showSideDrawer}
+                    closed={() => setSideDrawer(false)}
+                    isAuth={isAuth}
+                />
+            </>}
             <main className={styles.Content}>
-                {props.children}
+                {children}
             </main>
         </>
     );
 }
 
-export default Layout;
+const mapStateToProps = state => ({
+    isAuth: state.auth.isAuth
+});
+
+export default connect(mapStateToProps)(Layout);

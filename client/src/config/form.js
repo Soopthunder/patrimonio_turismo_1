@@ -1,125 +1,37 @@
 import { updateObject } from '../utils/helpers';
+import React from 'react';
 
-export const addSingleDestinationForm = (type, data) => {
-    let elements = {
-        name: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'text',
-                placeholder: 'Destino'
-            },
-            value: data ? data.name || '' : '',
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
-        },
-        image: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'file'
-            },
-            value: '',
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
-        },
-        country: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'text',
-                placeholder: 'Country'
-            },
-            value: data ? data.country || '' : '',
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
-        },
-        destinationType: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'hidden'
-            },
-            value: type,
-            validation: {},
-            valid: true
-        },
+/**
+ * 
+ * @param {String} type The type of destinaation Simple for an unique destination and groupal for multiple destinations
+ * @param {Object} data 
+ */
+export const addDestinationForm = (type, data) => {
+    const elements = {
+        title: data ? data.title || '' : '',
+        description: data ? data.description || '' : '',
+        popular: data ? data.popular || false : false,
+        image: data ? data.image || '' : '',
+        pdf: data ? data.pdf || '' : '',
+        gallery: data ? data.gallery || [] : [],
+        type
     }
     if (type === 'Grupal') {
-        elements = updateObject(elements, {
-            duration: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'number',
-                    placeholder: 'Duración'
-                },
-                value: data ? data.duration || 0 : 0,
-                validation: {
-                    min: 0
-                },
-                valid: false,
-                touched: false
-            },
-            date: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'date',
-                    placeholder: 'Fecha de salida'
-                },
-                value: data ? data.date || new Date().toString() : new Date().toString(),
-                validation: {},
-                valid: false,
-                touched: false
-            },
-            airport: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'text',
-                    placeholder: 'Aeropuerto'
-                },
-                value: data ? data.airport || '' : '',
-                validation: {},
-                valid: false,
-                touched: false
-            },
-            food: {
-                elementType: 'select',
-                elementConfig: {
-                    options: [
-                        { value: 'desayuno', displayValue: 'Desayuno' },
-                        { value: 'almuerzo', displayValue: 'Almuerzo' },
-                        { value: 'cena', displayValue: 'Cena' },
-                        { value: 'all-inclusive', displayValue: 'All inclusive' }
-                    ]
-                },
-                value: data ? data.food || 'desayuno' : 'desayuno',
-                validation: {},
-                valid: true,
-            },
-            price: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'number',
-                    placeholder: 'Price'
-                },
-                value: data ? data.price || 0 : 0,
-                validation: {
-                    min: 0
-                },
-                valid: false,
-                touched: false
-            }
+        return updateObject(elements, {
+            duration: data ? data.duration || 0 : 0,
+            departureDate: data ? data.departureDate.substring(0,10) || new Date().toISOString.substring(0,10) : new Date().toISOString().substring(0,10),
+            airport: data ? data.airport || '' : '',
+            food: data ? data.food || 'desayuno' : 'desayuno',
+            price: data ? data.price || 0 : 0,
+        })
+    }else if ( type ==='Simple'){
+        return updateObject(elements, {
+            continent: data ? data.continent || '' : '',
+            region: data ? data.region || '' : '',
+            country: data ? data.country || '' : '',
         })
     }
-
-    return { elements: elements, validform: false };
 }
-
 
 export const loginForm = () => ({
     elements: {
@@ -169,11 +81,11 @@ export const passwordChangeForm = {
             valid: false,
             touched: false
         },
-        oldPassword: {
+        repeatPassword: {
             elementType: 'input',
             elementConfig: {
                 type: 'password',
-                placeholder: 'Contraseña anterior'
+                placeholder: 'Repita la contraseña'
             },
             value: '',
             validation: {
@@ -182,11 +94,11 @@ export const passwordChangeForm = {
             valid: false,
             touched: false
         },
-        repeatOldPassword: {
+        oldPassword: {
             elementType: 'input',
             elementConfig: {
                 type: 'password',
-                placeholder: 'Repita la contraseña anterior'
+                placeholder: 'Contraseña anterior'
             },
             value: '',
             validation: {
@@ -202,24 +114,11 @@ export const passwordChangeForm = {
 
 export const emailChangeForm = {
     elements: {
-        username: {
+        newEmail: {
             elementType: 'input',
             elementConfig: {
-                type: 'text',
-                placeholder: 'Nombre de usuario'
-            },
-            value: '',
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
-        },
-        password: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'password',
-                placeholder: 'Contraseña'
+                type: 'email',
+                placeholder: 'Nuevo correo electrónico'
             },
             value: '',
             validation: {
@@ -234,7 +133,7 @@ export const emailChangeForm = {
 
 export const usernameChangeForm = {
     elements: {
-        username: {
+        newUsername: {
             elementType: 'input',
             elementConfig: {
                 type: 'text',
@@ -246,20 +145,154 @@ export const usernameChangeForm = {
             },
             valid: false,
             touched: false
-        },
-        password: {
-            elementType: 'input',
-            elementConfig: {
-                type: 'password',
-                placeholder: 'Contraseña'
-            },
-            value: '',
-            validation: {
-                required: true
-            },
-            valid: false,
-            touched: false
         }
     },
     validform: false
 };
+
+
+export const addService = data => ({
+    elements: {
+        title: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Título'
+            },
+            value: data ? data.title || '' : '',
+            validation: {
+                required: true
+            },
+            valid: data ? true : false,
+            touched: false
+        },
+        description: {
+            elementType: 'textarea',
+            elementConfig: {
+                type: 'password',
+                placeholder: 'Descripción'
+            },
+            value: data ? data.description || '' : '',
+            validation: {
+                required: true
+            },
+            valid: data ? true : false,
+            touched: false
+        },
+        image: {
+            elementType: 'input',
+            elementConfig: {
+                id: 'serviceImage',
+                type: 'file'
+            },
+            value: undefined,
+            label: <> <i className="far fa-image"></i> Imagen principal </> ,
+            validation: {
+                required: true
+            },
+            valid: data ? true : false,
+            touched: false
+        }
+    },
+    validform: false
+});
+
+export const addBanner = data => ({
+    elements: {
+        title: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Título'
+            },
+            value: data ? data.title || '' : '',
+            validation: {
+                required: true
+            },
+            valid: data ? true : false,
+            touched: false
+        },
+        image: {
+            elementType: 'input',
+            elementConfig: {
+                id: 'bannerImage',
+                type: 'file'
+            },
+            value: undefined,
+            validation: {
+                required: true
+            },
+            label: <> <i className="far fa-image"></i> Imagen principal </> ,
+            valid: data ? true : false,
+            touched: false
+        }
+    },
+    validform: false
+});
+
+
+export const addOperator = data => ({
+    elements: {
+        name: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Nombre del oeprador'
+            },
+            value: data ? data.name || '' : '',
+            validation: {
+                required: true
+            },
+            valid: data ? true : false,
+            touched: false
+        },
+        image: {
+            elementType: 'input',
+            elementConfig: {
+                id: 'operatorImage',
+                type: 'file'
+            },
+            value: undefined,
+            validation: {
+                required: true
+            },
+            label: <> <i className="far fa-image"></i> Imagen principal </> ,
+            valid: data ? true : false,
+            touched: false
+        }
+    },
+    validform: false
+});
+
+export const addCatalog = data => ({
+    elements: {
+        title: {
+            elementType: 'input',
+            elementConfig: {
+                type: 'text',
+                placeholder: 'Título del catálogo'
+            },
+            value: data ? data.title || '' : '',
+            validation: {
+                required: true
+            },
+            valid: data ? true : false,
+            touched: false
+        },
+        catalog: {
+            elementType: 'input',
+            elementConfig: {
+                id: 'catalogFile',
+                type: 'file'
+            },
+            value: undefined,
+            validation: {
+                required: true
+            },
+            label: <> <i className="far fa-image"></i> Catálogo </> ,
+            valid: data ? true : false,
+            touched: false
+        }
+    },
+    validform: false
+});

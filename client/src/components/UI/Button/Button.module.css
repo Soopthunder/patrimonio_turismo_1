@@ -1,7 +1,7 @@
 .Button {
     background-color: transparent;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     color: white;
     outline: none;
     cursor: pointer;
@@ -10,12 +10,24 @@
     font-weight: bold;
 }
 
+.Button:disabled{
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
 .Circle{
     border-radius: 100%;
 }
 
 .Success {
-    color: #5C9210;
+    box-shadow:2px 4px 8px rgb(119, 31, 119);
+    background: rgb(72, 72, 221);
+    color: rgb(119, 31, 119);
+}
+
+.Success:hover{
+    color: rgb(72, 72, 221);
+    background:  rgb(46, 46, 138);
 }
 
 .Danger {

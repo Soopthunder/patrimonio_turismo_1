@@ -1,26 +1,29 @@
+.Form{
+    box-shadow: 4px 4px 15px #777777;
+    border-radius: 10px;
+    padding: 25px;
+}
+
 .AddDestinationButton {
     align-items: center;
+    background: #c4b6b6;
+    box-shadow: 2px 2px 8px rgba(82, 71, 71, 1);
+    border-radius: 100%;
+    bottom: 4%;
     color: rgba(82, 71, 71, 1);
     display: flex;
     font-size: 22px;
-    justify-content: flex-end;
-    margin: 30px 0;
-}
-
-.AddDestinationButton button {
-    align-items: center;
-    background: #c4b6b6;
-    border: 2px solid rgba(82, 71, 71, 1);
-    border-radius: 100%;
-    display: flex;
-    height: 80px;
+    height: 75px;
     justify-content: center;
-    margin-left: 10px;
-    width: 80px;
+    position: fixed;
+    right: 4%;
+    width: 75px;
     transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -webkit-transition: all 0.4s linear;
 }
 
-.AddDestinationButton button:hover {
+.AddDestinationButton:hover {
     background-color: rgba(82, 71, 71, 1);
     border: 1px solid #c4b6b6;
     color: #c4b6b6;

@@ -1,0 +1,13 @@
+.Login {
+    background-color: #05056d;
+    box-shadow: 4px 4px 15px #777777;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.Login p {
+    color: #0396D9 ;
+    text-align: center; 
+    height: 10px; 
+    margin: 5px 0;
+}
